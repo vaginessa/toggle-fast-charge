@@ -38,7 +38,7 @@ public class FastCharge extends Activity {
 			tv.setVisibility(View.GONE);
 			fcToggle.setVisibility(View.GONE);
 			TextView noFC = new TextView(this);
-			noFC.setText("You don't have support for fast charge :(");
+			noFC.setText(R.string.noFC);
 			noFC.setTextSize(25);
 			noFC.setGravity(Gravity.CENTER);
 			rl.setGravity(Gravity.CENTER);
