@@ -15,8 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class FastCharge extends Activity {
-
+public class FastCharge extends Activity
+{
 	RelativeLayout rl;
 	ToggleButton fcToggle;
 	TextView fcText;
@@ -24,7 +24,8 @@ public class FastCharge extends Activity {
 	File ffc;
 
 	@Override
-	public void onCreate(Bundle bundle) {
+	public void onCreate(Bundle bundle)
+	{
 		super.onCreate(bundle);
 		setContentView(R.layout.activity_layout);
 
@@ -32,9 +33,10 @@ public class FastCharge extends Activity {
 		fcToggle = (ToggleButton) findViewById(R.id.fcToggle);
 		fcText = (TextView) findViewById(R.id.fchargeText);
 		tv = (TextView) findViewById(R.id.tv1);
-
 		ffc = new File("/sys/kernel/fast_charge/force_fast_charge");
-		if (!ffc.exists()) {
+
+		if (!ffc.exists())
+		{
 			fcText.setVisibility(View.GONE);
 			tv.setVisibility(View.GONE);
 			fcToggle.setVisibility(View.GONE);
@@ -44,82 +46,106 @@ public class FastCharge extends Activity {
 			noFC.setGravity(Gravity.CENTER);
 			rl.setGravity(Gravity.CENTER);
 			rl.addView(noFC);
-		} else {
+		}
+		else
+		{
 			StringBuilder text = new StringBuilder();
 
-			try {
+			try
+			{
 				BufferedReader br = new BufferedReader(new FileReader(ffc));
 				String line;
 
-				while ((line = br.readLine()) != null) {
+				while ((line = br.readLine()) != null)
+				{
 					text.append(line);
 					text.append('\n');
 				}
 				br.close();
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				e.printStackTrace();
 			}
 
 			tv.setText(text);
 			update(tv.getText().toString());
 
-			fcToggle.setOnClickListener(new View.OnClickListener() {
-
+			fcToggle.setOnClickListener(new View.OnClickListener()
+			{
 				@Override
-				public void onClick(View v) {
-					try {
+				public void onClick(View v)
+				{
+					try
+					{
 						FileOutputStream writer = new FileOutputStream(ffc);
 						if (tv.getText().toString().contains("1"))
-							try {
+							try
+							{
 								writer.write("0".getBytes());
 								writer.close();
 								StringBuilder text = new StringBuilder();
 
-								try {
+								try
+								{
 									BufferedReader br = new BufferedReader(
 											new FileReader(ffc));
 									String line;
 
-									while ((line = br.readLine()) != null) {
+									while ((line = br.readLine()) != null)
+									{
 										text.append(line);
 										text.append('\n');
 									}
 									br.close();
-								} catch (IOException e) {
+								}
+								catch (IOException e)
+								{
 									e.printStackTrace();
 								}
 
 								tv.setText(text);
 								update(tv.getText().toString());
-							} catch (IOException e) {
+							}
+							catch (IOException e)
+							{
 								e.printStackTrace();
 							}
 						if (tv.getText().toString().contains("0"))
-							try {
+							try
+							{
 								writer.write("1".getBytes());
 								writer.close();
 								StringBuilder text = new StringBuilder();
 
-								try {
+								try
+								{
 									BufferedReader br = new BufferedReader(
 											new FileReader(ffc));
 									String line;
 
-									while ((line = br.readLine()) != null) {
+									while ((line = br.readLine()) != null)
+									{
 										text.append(line);
 										text.append('\n');
 									}
 									br.close();
-								} catch (IOException e) {
+								}
+								catch (IOException e)
+								{
 									e.printStackTrace();
 								}
 
 								tv.setText(text);
 								update(tv.getText().toString());
-							} catch (IOException e) {
+							}
+							catch (IOException e)
+							{
 								e.printStackTrace();
 							}
-					} catch (FileNotFoundException e) {
+					}
+					catch (FileNotFoundException e)
+					{
 						e.printStackTrace();
 					}
 				}
@@ -127,11 +153,14 @@ public class FastCharge extends Activity {
 		}
 	}
 
-	public void update(String str) {
-		if (str.contains("1")) {
+	public void update(String str)
+	{
+		if (str.contains("1"))
+		{
 			fcToggle.setChecked(true);
 		}
-		if (str.contains("0")) {
+		if (str.contains("0"))
+		{
 			fcToggle.setChecked(false);
 		}
 	}
