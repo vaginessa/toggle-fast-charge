@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fast Charge</string>
+    <string name="fchargeText">Fast Charge is</string>
+    <string name="hiddenText">TextView</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="noFC">You don\'t have support for fast charge :(</string>
+
+</resources>
