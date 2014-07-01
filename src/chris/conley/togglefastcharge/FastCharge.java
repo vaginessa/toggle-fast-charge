@@ -24,6 +24,7 @@ public class FastCharge extends Activity {
 
 	@Override
 	public void onCreate(Bundle bundle) {
+		//WOOOHOOOOOO!!!!!
 		super.onCreate(bundle);
 		setContentView(R.layout.activity_layout);
 
